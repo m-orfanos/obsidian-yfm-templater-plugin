@@ -1,45 +1,42 @@
-## Obsidian Sample Plugin
+# Obsidian YAML front matter template plugin
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+This is a plugin used to create templates for [Obsidian](https://obsidian.md). The active file's YAML front matter is passed as data to a template engine.
 
-This project uses Typescript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in Typescript Definition format, which contains TSDoc comments describing what it does.
+## Usage
 
-**Note:** The Obsidian API is still in early alpha and is subject to change at any time!
+- Open a file
+- Open the Command Palette, search for the plugin, select the "insert" command
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Changes the default font color to red using `styles.css`.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+![command-palette](images/command-palette.png)
 
+- Choose a template
 
-### Releasing new releases
+![choose-template](images/choose-template.png)
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments.
-- Publish the release.
+- The plugin will insert the template into the active file
 
-### Adding your plugin to the community plugin list
+Note: The YAML front matter of both files will be merged.
 
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+See [examples](examples/README.md).
 
-### How to use
+## Features
 
-- Clone this repo.
-- `npm i` or `yarn` to install dependencies
-- `npm run dev` to start compilation in watch mode.
+The template engine is used to process a template with the YAML front matter of the active file passed as a data object.
 
-### Manually installing the plugin
+Currently the only template engine is [Etajs](https://eta.js.org/). Eta is _very_ fast and allows templates to be written using JavaScript. Dates can be using the `date-fns` library.
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+## Settings
 
-### API Documentation
+Configure a `templates` directory.
 
-See https://github.com/obsidianmd/obsidian-api
+![settings](images/settings.png)
+
+## Compatibility
+
+Requires Obsidian v0.10.2 or above to work properly.
+
+## Installation
+
+- Clone this repo in your vault `VaultFolder/.obsidian/plugins/`.
+- `npm i` to install dependencies.
+- `npm build` to compile the project.
