@@ -32,9 +32,6 @@ jobs:
         REPO_OWNER: m-orfanos
         SOURCE: release
         WITH_V: true
-        DEFAULT_BUMP: none
-    - name: Test
-      run: echo "${{ steps.create_release }}"
 #     - name: Upload main.js
 #       id: upload-main
 #       uses: actions/upload-release-asset@v1
