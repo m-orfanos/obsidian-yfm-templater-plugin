@@ -27,9 +27,15 @@ Currently the only template engine is [Etajs](https://eta.js.org/). Eta is _very
 
 ## Settings
 
-Configure a `templates` directory.
-
 ![settings](images/settings.png)
+
+- Configure a `templates` directory.
+
+Files in this directory will be available as templates
+
+- Configure a `extensions` file.
+
+This file extends the template engine with user-defined functions.
 
 ## Compatibility
 
