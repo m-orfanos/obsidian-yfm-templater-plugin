@@ -24,8 +24,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: move artifacts to temp folder
       run: |
-        mkdir temp
-        rsync -av . temp --exclude=".git" --exclude=".github"
+        rsync -av . temp --exclude=".git" --exclude=".github" --exclude=".gitignore"
         cd temp
         ls -la
 #     - name: zip directory
