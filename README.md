@@ -38,13 +38,17 @@ This section assumes the plugin settings have been configued properly.
 
 ### Basic example
 
-#### Create a note which will act as the template, `template.md`
+#### Create a note which will act as the template
+
+`template.md`
 
 ```markdown
 <% it.today %>
 ```
 
-#### Create a note to insert the template into, `note.md`
+#### Create a note to insert the template into
+
+`note.md`
 
 ```markdown
 ---
@@ -64,6 +68,8 @@ This is existing content
 
 #### Final result
 
+`note.md`
+
 ```markdown
 ---
 today: '2020-12-30' <!-- This is a string NOT a Date -->
@@ -79,6 +85,8 @@ This is existing content
 See the Basic example above first.
 
 #### Create a Template
+
+`template.md`
 
 ```markdown
 <%
@@ -105,6 +113,8 @@ function getEnd() {
 
 #### Create a Note, run the plugin's insert command and select the template (intermediate)
 
+`note.md`
+
 ```markdown
 ---
 date: 2020-12-28T05:00:00.000Z <!-- This is a Date object, the timezone is required -->
@@ -114,6 +124,8 @@ This is existing content
 ```
 
 #### Final Result
+
+`note.md`
 
 ```markdown
 ---
@@ -135,7 +147,9 @@ This is existing content
 
 ### Advanced example using user-defined global functions
 
-#### Create global extension, `extensions.js`
+#### Create global extension
+
+`extensions.js`
 
 ```js
 function days(start, end) {
@@ -156,6 +170,8 @@ function days(start, end) {
 
 #### Create a Template (advanced)
 
+`template.md`
+
 ```markdown
 <%
 function getEnd() {
@@ -174,6 +190,8 @@ function getEnd() {
 
 #### Create a Note, run the plugin's insert command and select the template (advanced)
 
+`note.md`
+
 ```markdown
 ---
 date: 2020-12-28T05:00:00.000Z <!-- This is a Date object, the timezone is required -->
@@ -183,6 +201,8 @@ This is existing content
 ```
 
 #### Final Result (advanced)
+
+`note.md`
 
 ```markdown
 ---
