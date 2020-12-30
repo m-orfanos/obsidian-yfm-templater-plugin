@@ -1,4 +1,4 @@
-# Complex example
+# Basic example
 
 This example defines a bunch of user-defined functions directly in the template.
 
