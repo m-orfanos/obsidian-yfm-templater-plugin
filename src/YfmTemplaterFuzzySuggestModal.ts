@@ -15,7 +15,7 @@ export class YfmTemplaterFuzzySuggestModal extends FuzzySuggestModal<string> {
 	}
 
 	onChooseItem(item: string, evt: MouseEvent | KeyboardEvent): void {
-		this.plugin.templaterService.insertTemplate(item);
+		this.plugin.templaterService().insertTemplate(item);
 	}
 
 	readTemplatesFromDisk(): string[] {
@@ -42,7 +42,7 @@ export class YfmTemplaterFuzzySuggestModal extends FuzzySuggestModal<string> {
 		if (templates.length > 1) {
 			this.open();
 		} else {
-			await this.plugin.templaterService.insertTemplate(templates[0]);
+			await this.plugin.templaterService().insertTemplate(templates[0]);
 		}
 	}
 }

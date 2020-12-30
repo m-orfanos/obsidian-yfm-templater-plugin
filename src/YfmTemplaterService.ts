@@ -3,12 +3,13 @@ import matter from 'gray-matter';
 import { EtaYfmTemplaterRenderService } from 'src/renderers/EtaYfmTemplaterRenderService';
 import { App, Notice, TFile } from 'obsidian';
 import { YfmTemplaterRenderService } from "./renderers/YfmTemplaterRenderService";
+import { YfmTemplaterPluginSettings } from './YfmTemplaterPluginSettings';
 
 export class YfmTemplaterService {
     renderService: YfmTemplaterRenderService;
 
-    constructor(private app: App) {
-        this.renderService = new EtaYfmTemplaterRenderService();
+    constructor(private app: App, private settings: YfmTemplaterPluginSettings) {
+        this.renderService = new EtaYfmTemplaterRenderService(this.app, this.settings);
     }
 
     async insertTemplate(path: string) {
@@ -30,7 +31,7 @@ export class YfmTemplaterService {
         }
         let renderedMatter = matter(rendered);
 
-        let merged = {...contentMatter.data, ...renderedMatter.data};
+        let merged = { ...contentMatter.data, ...renderedMatter.data };
 
         let newContent = matter.stringify(contentMatter.content + renderedMatter.content, merged);
         await this.app.vault.modify(active, newContent);

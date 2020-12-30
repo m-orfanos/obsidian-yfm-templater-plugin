@@ -7,11 +7,9 @@ import { YfmTemplaterService } from './YfmTemplaterService';
 
 export default class YfmTemplaterPlugin extends Plugin {
 	settings: YfmTemplaterPluginSettings;
-	templaterService: YfmTemplaterService;
 
 	constructor(app: App, pluginManifest: PluginManifest) {
 		super(app, pluginManifest);
-		this.templaterService = new YfmTemplaterService(this.app);
 	}
 
 	async onload() {
@@ -75,6 +73,10 @@ export default class YfmTemplaterPlugin extends Plugin {
 
 	async saveSettings() {
 		await this.saveData(this.settings);
+	}
+
+	templaterService() {
+		return new YfmTemplaterService(this.app, this.settings);
 	}
 
 }
