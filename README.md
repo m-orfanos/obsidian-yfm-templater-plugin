@@ -4,13 +4,13 @@
 
 This is a plugin used to create templates for [Obsidian](https://obsidian.md). The active file's YAML front matter is passed as data to a template engine.
 
-Currently the default Obsidian template allows users to add `{date}` and `{time}` placeholders to notes. When used as templates via the insert template command the placeholder resolve to the current date and time, respectively.
+The default Obsidian template feature allows users to have `{date}` and `{time}` placeholders in their templates. When the insert template command is run the placeholder are resolved to the current date and time, respectively.
 
-The YAML front matter template plugin (YFMTP) also has an insert template command but instead of using fixed placeholders the currently active note's YAML front matter is passed to a template engine.
+The YAML front matter template plugin also has an insert template command, but instead of using fixed placeholders users can define their own variables and control structures (loop, functions, etc.).
 
-Currently the only supported template engine is [Etajs](https://eta.js.org/) (more coming soon). Etajs is an _extremely_ fast template engine. The engine also includes a reference to the `date-fns` library, which can be used to process dates.
+The only supported template engine is [Etajs](https://eta.js.org/) (more coming soon). Etajs biggest benefit is that it's _extremely_ fast. Dates can be manipulated using the `date-fns` library.
 
-The plugin also supports user-defined helper functions/objects/properties.
+The plugin has support for user-defined helper functions/objects/properties.
 
 ## Compatibility
 
