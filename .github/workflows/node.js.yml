@@ -27,7 +27,7 @@ jobs:
           node-version: "14.x" # You might need to adjust this value to your own version
       - name: Build
         id: build
-      - run: |
+        run: |
           rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' . ./${{ env.PLUGIN_NAME }}
           zip -r ${{ env.PLUGIN_NAME }}.zip ${{ env.PLUGIN_NAME }}
           
