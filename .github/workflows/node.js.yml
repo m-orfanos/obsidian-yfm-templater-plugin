@@ -20,13 +20,14 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x]
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install -g yarn
-    - run: yarn
-    - run: yarn run build --if-present
+    - uses: actions/checkout@v1
+    - name: zip directory
+      run: zip -r ${{ env.PLUGIN_NAME }}.zip . -x ".git/*" ".github/*"
+    - name: tar directory
+      run: tar -czvf ${{ env.PLUGIN_NAME }}.tar.gz . --exclude=".git" --exclude=".github"  
+#     - name: Github Tag Bump
+#       uses: anothrNick/github-tag-action@1.33.0
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         WITH_V: true
