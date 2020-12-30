@@ -58,7 +58,7 @@ This is existing content
 
 ![command-palette](images/command-palette.png)
 
-#### Choose a template
+#### Select the template you created above
 
 ![choose-template](images/choose-template.png)
 
@@ -103,7 +103,7 @@ function getEnd() {
 <% }) %>
 ```
 
-#### Create a Note and run the plugin's insert command
+#### Create a Note, run the plugin's insert command and select the template (intermediate)
 
 ```markdown
 ---
@@ -154,7 +154,7 @@ function days(start, end) {
 })();
 ```
 
-#### Create a Template (adv)
+#### Create a Template (advanced)
 
 ```markdown
 <%
@@ -172,7 +172,17 @@ function getEnd() {
 <% }) %>
 ```
 
-#### Final Result (adv)
+#### Create a Note, run the plugin's insert command and select the template (advanced)
+
+```markdown
+---
+date: 2020-12-28T05:00:00.000Z <!-- This is a Date object, the timezone is required -->
+---
+
+This is existing content
+```
+
+#### Final Result (advanced)
 
 ```markdown
 ---
