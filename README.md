@@ -221,7 +221,3 @@ This is existing content
 - [[2021-01-02]]
 - [[2021-01-03]]
 ```
-
-### Other examples
-
-See [examples](examples/README.md).
