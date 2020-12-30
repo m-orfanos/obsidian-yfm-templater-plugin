@@ -3,6 +3,9 @@
 
 name: Build plugin
 
+env:
+  PLUGIN_NAME: obsidian-yfm-templater-plugin
+
 on:
   push:
     branches: [ main ]
@@ -11,7 +14,7 @@ on:
 
 jobs:
   build:
-
+    
     runs-on: ubuntu-latest
 
     strategy:
@@ -24,5 +27,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm i
-    - run: npm run build
+    - run: npm install -g yarn
+    - run: yarn
+    - run: yarn run build --if-present
