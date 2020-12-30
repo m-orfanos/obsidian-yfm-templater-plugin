@@ -39,7 +39,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ steps.create_release.outputs.url }}
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./main.js
         asset_name: main.js
         asset_content_type: text/javascript
@@ -49,7 +49,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ steps.create_release.outputs.url }}
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./manifest.json
         asset_name: manifest.json
         asset_content_type: application/json
