@@ -1,41 +1,16 @@
 # Obsidian YAML front matter template plugin
 
+## Introduction
+
 This is a plugin used to create templates for [Obsidian](https://obsidian.md). The active file's YAML front matter is passed as data to a template engine.
 
-## Usage
+Currently the default Obsidian template allows users to add `{date}` and `{time}` placeholders to notes. When used as templates via the insert template command the placeholder resolve to the current date and time, respectively.
 
-- Open a file
-- Open the Command Palette, search for the plugin, select the "insert" command
+The YAML front matter template plugin (YFMTP) also has an insert template command but instead of using fixed placeholders the currently active note's YAML front matter is passed to a template engine.
 
-![command-palette](images/command-palette.png)
+Currently the only supported template engine is [Etajs](https://eta.js.org/) (more coming soon). Etajs is an _extremely_ fast template engine. The engine also includes a reference to the `date-fns` library, which can be used to process dates.
 
-- Choose a template
-
-![choose-template](images/choose-template.png)
-
-- The plugin will insert the template into the active file
-
-Note: The YAML front matter of both files will be merged.
-
-See [examples](examples/README.md).
-
-## Features
-
-The template engine is used to process a template with the YAML front matter of the active file passed as a data object.
-
-Currently the only template engine is [Etajs](https://eta.js.org/). Eta is _very_ fast and allows templates to be written using JavaScript. Dates can be using the `date-fns` library.
-
-## Settings
-
-![settings](images/settings.png)
-
-- Configure a `templates` directory.
-
-Files in this directory will be available as templates
-
-- Configure a `extensions` file.
-
-This file extends the template engine with user-defined functions.
+The plugin also supports user-defined helper functions/objects/properties.
 
 ## Compatibility
 
@@ -43,6 +18,180 @@ Requires Obsidian v0.10.2 or above to work properly.
 
 ## Installation
 
-- Clone this repo in your vault `VaultFolder/.obsidian/plugins/`.
-- `npm i` to install dependencies.
-- `npm build` to compile the project.
+You will have to manually install the plugin
+
+- Download the latest [releases](https://github.com/m-orfanos/obsidian-yfm-templater-plugin/releases).
+- Copy over main.js and styles.css to your vault VaultFolder/.obsidian/plugins/obsidian-yfm-templater-plugin/releases/.
+
+## Settings
+
+![settings](images/settings.png)
+
+| Setting                                          | Example value               |
+| ------------------------------------------------ | --------------------------- |
+| Template directory location                      | templates                   |
+| User-defined extensions JavaScript file location | templates/extensions.eta.js |
+
+## Usage
+
+This section assumes the plugin settings have been configued properly.
+
+### Basic example
+
+#### Create a note which will act as the template, `template.md`
+
+```markdown
+<% it.today %>
+```
+
+#### Create a note to insert the template into, `note.md`
+
+```markdown
+---
+today: "2020-12-30"
+---
+
+This is existing content
+```
+
+#### Open the Command Palette, search for the plugin, select the "insert" command
+
+![command-palette](images/command-palette.png)
+
+#### Choose a template
+
+![choose-template](images/choose-template.png)
+
+#### Final result
+
+```markdown
+---
+today: '2020-12-30' <!-- This is a string NOT a Date -->
+---
+
+This is existing content
+
+2020-12-30
+```
+
+### Intermediate example using loops and functions
+
+See the Basic example above first.
+
+#### Create a Template
+
+```markdown
+<%
+function days(start, end) {
+    // Note the `it` variable
+    return it.dateFns.eachDayOfInterval({
+        start: start,
+        end: end
+    });
+}
+function getEnd() {
+    return it.dateFns.add(it.date, { days: 6 });
+}
+%>
+
+## Weekly Review
+
+<!-- Note the `-` character, w/o it a newline would be added for every item -->
+
+<% days(it.date, getEnd()).forEach(function(date) { -%>
+- [[<%= it.dateFns.format(date, 'yyyy-MM-dd') %>]]
+<% }) %>
+```
+
+#### Create a Note and run the plugin's insert command
+
+```markdown
+---
+date: 2020-12-28T05:00:00.000Z <!-- This is a Date object, the timezone is required -->
+---
+
+This is existing content
+```
+
+#### Final Result
+
+```markdown
+---
+date: 2020-12-28T05:00:00.000Z
+---
+
+This is existing content
+
+## Weekly Review
+
+- [[2020-12-28]]
+- [[2020-12-29]]
+- [[2020-12-30]]
+- [[2020-12-31]]
+- [[2021-01-01]]
+- [[2021-01-02]]
+- [[2021-01-03]]
+```
+
+### Advanced example using user-defined global functions
+
+#### Create global extension, `extensions.js`
+
+```js
+function days(start, end) {
+  // Note the `it` variable is not used here
+  return dateFns.eachDayOfInterval({
+    start: start,
+    end: end,
+  });
+}
+
+// export functions
+(function () {
+  return {
+    days,
+  };
+})();
+```
+
+#### Create a Template (adv)
+
+```markdown
+<%
+function getEnd() {
+    return it.dateFns.add(it.date, { days: 6 });
+}
+%>
+
+## Weekly Review
+
+<!-- Note the `-` character, w/o it a newline would be added for every item -->
+<!-- Note the `it` variable, the `days` function is the extension defined above -->
+<% it.days(it.date, getEnd()).forEach(function(date) { -%>
+- [[<%= it.dateFns.format(date, 'yyyy-MM-dd') %>]]
+<% }) %>
+```
+
+#### Final Result (adv)
+
+```markdown
+---
+date: 2020-12-28T05:00:00.000Z
+---
+
+This is existing content
+
+## Weekly Review
+
+- [[2020-12-28]]
+- [[2020-12-29]]
+- [[2020-12-30]]
+- [[2020-12-31]]
+- [[2021-01-01]]
+- [[2021-01-02]]
+- [[2021-01-03]]
+```
+
+### Other examples
+
+See [examples](examples/README.md).
