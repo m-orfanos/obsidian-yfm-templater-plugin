@@ -24,12 +24,31 @@ jobs:
     - uses: actions/checkout@v1
     - name: Create Release Folder
       run: rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' . ./release
-    - name: Switch to Release Folder
-      run: |
-        cd release
-        ls -la
     - name: Github Tag Bump
+      id: create_release
       uses: anothrNick/github-tag-action@1.33.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        REPO_OWNER: m-orfanos
+        SOURCE: release
         WITH_V: true
+    - name: Upload main.js
+      id: upload-main
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.url }}
+        asset_path: ./main.js
+        asset_name: main.js
+        asset_content_type: text/javascript
+    - name: Upload manifest.json
+      id: upload-manifest
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.url }}
+        asset_path: ./manifest.json
+        asset_name: manifest.json
+        asset_content_type: application/json
