@@ -25,7 +25,7 @@ jobs:
     - name: zip directory
       run: zip -r ${{ env.PLUGIN_NAME }}.zip . -x ".git/*" ".github/*"
     - name: tar directory
-      run: tar -czvf ${{ env.PLUGIN_NAME }}.tar.gz . --exclude=".git" --exclude=".github"  
+      run: tar -czvf --exclude="./.git" --exclude="./.github" --exclude="${{ env.PLUGIN_NAME }}.zip" ${{ env.PLUGIN_NAME }}.tar.gz ./
 #     - name: Github Tag Bump
 #       uses: anothrNick/github-tag-action@1.33.0
 #       env:
