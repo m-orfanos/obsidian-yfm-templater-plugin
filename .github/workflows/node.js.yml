@@ -22,17 +22,14 @@ jobs:
         node-version: [14.x]
     steps:
     - uses: actions/checkout@v1
-    - name: move artifacts to temp folder
+    - name: Create Release Folder
+      run: rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' . ./release
+    - name: Switch to Release Folder
       run: |
-        rsync -av . temp --exclude=".git" --exclude=".github" --exclude=".gitignore"
-        cd temp
+        cd release
         ls -la
-#     - name: zip directory
-#       run: zip -r ${{ env.PLUGIN_NAME }}.zip . -x ".git/*" ".github/*"
-#     - name: tar directory
-#       run: tar -czvf --exclude=".git" --exclude=".github" --exclude="*.zip" ${{ env.PLUGIN_NAME }}.tar.gz -C .
-# #     - name: Github Tag Bump
-# #       uses: anothrNick/github-tag-action@1.33.0
-#       env:
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#         WITH_V: true
+    - name: Github Tag Bump
+      uses: anothrNick/github-tag-action@1.33.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        WITH_V: true
