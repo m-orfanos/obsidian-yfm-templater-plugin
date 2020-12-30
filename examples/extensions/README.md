@@ -7,3 +7,5 @@ Configure the `template` directory and `extensions` file plugin settings.
 - Open [note before](note-before.md) in Obsidian
 - Run the plugin's insert command, choose the template above.
 - The result of the operation is in shown [note after](note-after.md)
+
+![demonstration](demonstration.gif)
