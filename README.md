@@ -20,8 +20,8 @@ Requires Obsidian v0.10.2 or above to work properly.
 
 You will have to manually install the plugin
 
-- Download the latest [releases](https://github.com/m-orfanos/obsidian-yfm-templater-plugin/releases).
-- Copy over main.js and styles.css to your vault VaultFolder/.obsidian/plugins/obsidian-yfm-templater-plugin/releases/.
+- Download the latest release from the [releases](https://github.com/m-orfanos/obsidian-yfm-templater-plugin/releases) page.
+- Copy over main.js and styles.css to your vault `VaultFolder/.obsidian/plugins/obsidian-yfm-templater-plugin/`.
 
 ## Settings
 
