@@ -25,9 +25,8 @@ jobs:
           rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' . ./${{ env.PLUGIN_NAME }}
           zip -r ${{ env.PLUGIN_NAME }}.zip ${{ env.PLUGIN_NAME }}
           
-          npm install -g yarn
-          yarn
-          yarn run build --if-present
+          npm i
+          npm run build
           
           echo "::set-output name=tag_name::$(git tag --sort version:refname | tail -n 1)"
       - name: Create Release
