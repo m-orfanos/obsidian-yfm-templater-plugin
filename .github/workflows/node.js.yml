@@ -22,12 +22,13 @@ jobs:
       - name: Build
         id: build
         run: |
-          rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' . ./${{ env.PLUGIN_NAME }}
+          npm install -g yarn
+          yarn
+          yarn run build --if-present
+          mkdir ${{ env.PLUGIN_NAME }}
+          cp main.js manifest.json ${{ env.PLUGIN_NAME }}
           zip -r ${{ env.PLUGIN_NAME }}.zip ${{ env.PLUGIN_NAME }}
-          
-          npm i
-          npm run build
-          
+          ls
           echo "::set-output name=tag_name::$(git tag --sort version:refname | tail -n 1)"
       - name: Create Release
         id: create_release
