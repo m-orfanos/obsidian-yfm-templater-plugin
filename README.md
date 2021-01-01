@@ -76,6 +76,8 @@ today: '2020-12-30' <!-- This is a string NOT a Date -->
 ---
 
 This is existing content
+
+2020-12-30
 ```
 
 ### Intermediate example using loops and functions
