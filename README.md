@@ -18,10 +18,9 @@ Requires Obsidian v0.10.2 or above to work properly.
 
 ## Installation
 
-You will have to manually install the plugin
+You can install the plugin via the Community Plugins tab within Obsidian. Search for "Template".
 
-- Download the latest release from the [releases](https://github.com/m-orfanos/obsidian-yfm-templater-plugin/releases) page.
-- Copy over main.js and styles.css to your vault `VaultFolder/.obsidian/plugins/obsidian-yfm-templater-plugin/`.
+You can also manually install the plugin from the [releases](https://github.com/m-orfanos/obsidian-yfm-templater-plugin/releases) page. Copy over main.js and styles.css to your vault `VaultFolder/.obsidian/plugins/obsidian-yfm-templater-plugin/`.
 
 ## Settings
 
