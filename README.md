@@ -8,7 +8,7 @@ The default Obsidian template feature allows users to have `{date}`, `{time}` an
 
 The YAML front matter template plugin also has an insert template command, but instead of using fixed placeholders users can define their own variables and control structures (loop, functions, etc.).
 
-The only supported template engine is [Etajs](https://eta.js.org/) (this may change in the future). Etajs biggest benefit is that it's _extremely_ fast. Dates can be manipulated using the `date-fns` library.
+The only supported template engine is [Etajs](https://eta.js.org/) (this may change in the future). Etajs biggest benefit is that it's _extremely_ fast. Dates can be manipulated using the [date-fns](https://date-fns.org/) library.
 
 The plugin has support for user-defined global helper functions/objects/attributes. These properties can be defined in a single file and used in all subsequent templates.
 
