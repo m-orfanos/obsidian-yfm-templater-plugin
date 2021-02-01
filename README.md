@@ -1,6 +1,6 @@
 # Obsidian YAML front matter template plugin
 
-THIS PLUGIN IS NOT COMPATIBLE WITH OBSIDIAN v10.11+
+THIS PLUGIN IS NOT COMPATIBLE WITH OBSIDIAN v0.10.11+
 
 ## Introduction
 
@@ -16,7 +16,7 @@ The plugin has support for user-defined global helper functions/objects/attribut
 
 ## Compatibility
 
-Requires Obsidian v0.10.2 or above to work properly.
+This plugin is compatible with Obsidian v0.10.2.
 
 ## Installation
 
