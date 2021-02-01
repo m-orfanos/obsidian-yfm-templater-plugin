@@ -1,5 +1,7 @@
 # Obsidian YAML front matter template plugin
 
+THIS PLUGIN IS NOT COMPATIBLE WITH OBSIDIAN v10.11+
+
 ## Introduction
 
 This is a plugin used to create templates for [Obsidian](https://obsidian.md). The active file's YAML front matter is passed as data to a template engine.
